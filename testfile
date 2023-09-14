@@ -1,0 +1,87 @@
+    1  ifconfig
+    2  ssh-keygen -t ed25519 -C "sirileefilekeeping@gmail.com"
+    3  pwd
+    4  cat .ssh/id_ed25519.pub 
+    5  git clone git@github.com:iriseel/334.git
+    6  cat .ssh/id_ed25519.pub pwd
+    7  pwd
+    8  ls
+    9  mkdir git
+   10  cd git
+   11  git clone --recursive git@github.com:iriseel/334.git
+   12  ls
+   13  cd 334/
+   14  LS
+   15  ls
+   16  cd ../
+   17  ls
+   18  git pull
+   19  ls -a
+   20  cd 334
+   21  LS
+   22  git pull
+   23  ls
+   24  cd home
+   25  cd raspberrypi/home
+   26  nano get_ip.sh
+   27  chmod +x get_ip.sh
+   28  ./get_ip.sh
+   29  touch get_ip.sh
+   30  nano get_ip.sh
+   31  chmod +x get_ip.sh
+   32  ./get_ip.sh
+   33  git config --global user.email "sirileefilekeeping@gmail.com"
+   34  ./get_ip.sh
+   35  git config --global user.name "iriseel"
+   36  ./get_ip.sh
+   37  nano get_ip.sh
+   38  ./get_ip.sh
+   39  nano get_ip.sh
+   40  chmod +x get_ip.sh
+   41  ./get_ip.sh
+   42  nano get_ip.sh
+   43  ./get_ip.sh
+   44  nano get_ip.sh
+   45  ./get_ip.sh
+   46  nano get_ip.sh
+   47  chmod +x get_ip.sh
+   48  ./get_ip.sh 
+   49  sudo nano /etc/rc.local
+   50  pwd
+   51  sudo nano etc/rc.local
+   52  sudo nano /etc/rc.local
+   53  pwd
+   54  nano get_ip.sh
+   55  chmod +x get_ip.sh
+   56  ./get_ip.sh
+   57  nano get_ip.sh
+   58  pwd
+   59  cat .ssh/id_ed25519.pub
+   60  pwd
+   61  cd git/334/raspberrypi/home
+   62  nano get_ip.sh
+   63  ssh -T git@github.com:iriseel/334.git
+   64  hostname -I
+   65  ls
+   66  cd git/334/raspberrypi/home
+   67  nano ip.md
+   68  nano get_ip.sh
+   69  ls
+   70  ls -a
+   71  cd student334/
+   72  ls -a
+   73  ls
+   74  cd ..
+   75  ls
+   76  ccd
+   77  cd
+   78  ls
+   79  cd git/
+   80  ls
+   81  ls -a
+   82  cd 334/
+   83  ls
+   84  ls -a
+   85  git status
+   86  touch testfile
+   87  history > testfile 
