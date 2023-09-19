@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Changing Circle Color, Size, and Shape by Time</title>
+    <style>
+        :root {
+            --heart-color: pink;
+        }
+
+        body {
+            overflow:hidden;
+            background:black;
+        }
+
+        .container {
+            width:90vw;
+            height:90vh;
+            position:absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* background-color:pink; */
+        }
+        .shape_container {
+            animation: horizontal-shaking .5s infinite;
+            animation-delay:1.3s;
+            position:absolute;
+            transform-origin: center;
+        }
+        .shape {
+            transition: 0.5s;
+            /* border: 10px solid; */
+            /* border-radius:50%; */
+            width:10%;
+            height:10%;
+            position:relative;
+        }
+        .shape:before, .shape:after {
+            position: absolute;
+            /* border: 10px solid; */
+            content: "";
+            left: 10vmin;
+            top: 0;
+            width: 10vmin;
+            height: calc(8/5 * 10vmin);
+            background: var(--heart-color);
+            border-radius: 10vmin 10vmin 0 0;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+        .shape:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        @keyframes horizontal-shaking {
+            0% { transform: translateY(0) }
+            25% { transform: translateY(5px) }
+            50% { transform: translateY(-5px) }
+            75% { transform: translateY(5px) }
+            100% { transform: translateY(0) }
+        }
+
+        @keyframes spin {
+            0% {transform: rotate(0deg)}
+            100%{transform: rotate(720deg)}
+        }
+  
+    </style>
+</head>
+<body>
+    <div class="container"></div>
+
+    <script>
+        const container = document.querySelector(".container");
+        
+        function MakeShape() {
+            // Create a new <div> element
+            const shape = document.createElement("div");
+            const shapeContainer = document.createElement("div");
+            let initialHue = Math.floor(Math.random() * 360);
+            shape.classList.add("shape");
+            shapeContainer.classList.add("shape_container");
+
+            // Generate random coordinates as percentages of the viewport width and height
+            const randomXPercent = Math.random() * 80;
+            const randomYPercent = Math.random() * 80;
+            const randomScale = Math.random() * (2 - .3) + .3;
+
+            // Set the div's position to the random coordinates
+            shapeContainer.style.left = `${randomXPercent}%`;
+            shapeContainer.style.top = `${randomYPercent}%`;
+
+            shape.style.transform = `scale(${randomScale})`;
+
+            // Append the div to the body element
+            container.appendChild(shapeContainer);
+            shapeContainer.appendChild(shape);
+
+            updateShape(initialHue, shape);
+            console.log("making shape")
+        }
+
+        // Function to update circle color, size, and shape based on current time
+        function updateShape(initialHue, shape) {
+
+            let currentHue = (initialHue + 1) % 360;
+            shape.style.setProperty("--heart-color", `hsl(${currentHue}, 100%, 50%)`);
+            
+            requestAnimationFrame(function() {
+                updateShape(currentHue, shape);
+            });
+        }
+
+
+        function checkShapes() {
+            const shapeContainers = document.querySelectorAll(".shape_container");
+            const shapes = document.querySelectorAll(".shape");
+            const currentTime = new Date();
+            const seconds = currentTime.getSeconds();
+            console.log(seconds);
+
+            if (seconds == 0) {
+                shapeContainers.forEach(function(shapeContainer) {
+                    shapeContainer.style.animation = "spin 1s"
+                });
+            }
+            else {
+                shapeContainers.forEach(function(shapeContainer) {
+                    shapeContainer.style.animation = "horizontal-shaking .5s infinite";
+                });
+            }
+            // Update circle color based on time
+            // shapes.forEach(function(shape) {
+
+            if (shapes.length > 9) {
+            // Remove the excess elements
+            for (let i = 0; i < shapes.length - 9; i++) {
+                shapes[i].style.opacity = 0;
+                setTimeout(function() {
+                    shapes[i].remove();
+                    }, 500);
+                
+                }
+            }
+        }
+
+        const MakeShapeInterval = setInterval(MakeShape, 1000);
+        const removeShapesInterval = setInterval(checkShapes, 1000);
+
+        
+    </script>
+</body>
+</html>
