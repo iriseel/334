@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Joystick Control</title>
+
+    <style>
+        * {
+            transition: .5s;
+        }
+
+        body {background-color:lightcoral;}
+        .object {
+            background-color:lightsteelblue;
+            width:200px;
+            height:600px;
+            border-radius:0%;
+            filter: blur(5px);
+
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+
+</head>
+<body>
+    <div class="object">
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+        // Establish a WebSocket connection to the server
+        const socket = io.connect('http://' + document.domain + ':' + location.port);
+        const object = document.querySelector(".object");
+
+        socket.emit('my_event', { message: 'Hello, server!' });
+        
+        // Event handler for receiving data from the server
+
+        socket.on('button_update', function(data) {
+            // Update the webpage based on the data received
+            object.style.filter = data.filter;
+        });
+
+        socket.on('switch_update', function(data) {
+            // Update the webpage based on the data received
+            object.style.borderRadius = data.border;
+        });
+
+        socket.on('joystick_update', function(data) {
+            // Update the webpage based on the data received
+            object.style.background = data.color;
+        });
+        
+
+        socket.on('server_response', function(message) {
+            console.log(message);
+        })
+    </script>
+</body>
+</html>
