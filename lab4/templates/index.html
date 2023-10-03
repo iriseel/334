@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Joystick Control</title>
+
+    <link rel="stylesheet" href ="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+
+</head>
+<body>
+    <div class="hand">
+        <img src="{{ url_for('static', filename='images/hand.png') }}" alt="hand">
+    </div>
+
+    <div class="container">
+        <div class="flower flower1">
+            <img src="{{ url_for('static', filename='images/flower.png') }}">
+        </div>
+        <div class="piranha piranha1">
+            <img src="{{ url_for('static', filename='images/piranha.png') }}">
+        </div>
+        <div class="flower flower2">
+            <img src="{{ url_for('static', filename='images/flower.png') }}">
+        </div>
+        <div class="piranha piranha2">
+            <img src="{{ url_for('static', filename='images/piranha.png') }}">
+        </div>
+        <div class="flower flower3">
+            <img src="{{ url_for('static', filename='images/flower.png') }}">
+        </div>
+        <div class="piranha piranha3">
+            <img src="{{ url_for('static', filename='images/piranha.png') }}">
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+* {
+    transition: .5s;
+}
+
+body {
+    background: radial-gradient(circle, rgba(0, 255, 252, 1) 0%, rgba(0, 44, 255, 1) 16%, rgba(238, 75, 255, 1) 33%, rgba(0, 44, 255, 1) 54%, rgba(0, 255, 252, 1) 78%, rgba(113, 185, 255, 1) 100%);
+    overflow:hidden;
+}
+
+.container {
+    width: 100vw;
+    height:100vh;
+    position:fixed;
+    top:0;
+    left:0;
+    /* background:blue; */
+}
+
+/* .object {
+    background-color:lightsteelblue;
+    width:200px;
+    height:600px;
+    border-radius:0%;
+    filter: blur(5px);
+
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} */
+
+.flower, .piranha {
+    position:absolute;
+    width: 10vw;
+    height:auto;
+}
+
+img {
+    max-width:100%;
+    max-height:100%;
+}
+
+.flower1 {
+    left: 0;
+    top: 0;
+}
+
+.piranha1 {
+    right: 0;
+    top: 0;
+}
+
+.flower2 {
+    left:50%;
+    top: 0;
+}
+
+.piranha2 {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.flower3 {
+    right: 0;
+    bottom: 0;
+}
+
+.piranha3 {
+    left: 0;
+    bottom: 0;
+}
+
+.hand {
+    position:absolute;
+    right:50%;
+    top:50%;
+    z-index:10;
+    width:25vw;
+    height:auto;
+    /* transform:translate(-50%,-50%); */
+
+    transition: left 0.5s, top 0.5s;
+}
