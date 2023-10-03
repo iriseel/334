@@ -12,10 +12,10 @@ const max = 6000; // Maximum value of the original range
 const mapMin = 0; // Minimum value of the new range
 const mapMax = 100; // Maximum value of the new range
 
-const clenchUrl = "{{ url_for('static', filename='../images/fist.png') }}";
-const punchUrl = "{{ url_for('static', filename='../images/pow.png') }}";
-const defaultUrl = "{{ url_for('static', filename='../images/hand.png') }}";
-const pickedUrl = "{{ url_for('static', filename='../images/hand_pickup.png') }}";
+const clenchUrl = "/static/images/fist.png";
+const punchUrl = "/static/images/pow.png";
+const defaultUrl = "/static/images/hand.png";
+const pickedUrl = "/static/images/hand_pickup.png";
 
 // const imageUrls = {{ image_urls | tojson | safe }};
 
@@ -33,7 +33,7 @@ socket.on('switch_update', function(data) {
     //  object.style.borderRadius = data.border;
 });
 
-console.log(imageUrls)
+// console.log(imageUrls)
 
 socket.on('update', function(data) {
     const vrxValue = data.vrxValue;
@@ -45,18 +45,18 @@ socket.on('update', function(data) {
     
     if (switchState == "ON" && buttonState == "RELEASED") {
         console.log("clenched")
-        handImg.src = imageUrls[0];
+        handImg.src = clenchUrl;
     }
     else if (switchState == "ON" && buttonState == "PRESSED") {
         console.log("punched")
-        handImg.src = imageUrls[1];
+        handImg.src = punchUrl;
     }
     else if (switchState == "OFF" && buttonState == "RELEASED") {
-        handImg.src = imageUrls[2];
+        handImg.src = defaultUrl;
         console.log("default")
     }
     else if (switchState == "OFF" && buttonState == "PRESSED") {
-        handImg.src = imageUrls[3];
+        handImg.src = pickedUrl;
         console.log("picked")
     }
     else {

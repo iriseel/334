@@ -1,7 +1,7 @@
 #trying to send data from the esp32 to server via raspi
 
 import serial
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
 from gpiozero import Button
 from signal import pause
@@ -19,15 +19,8 @@ buttonState = ""  # Initialize buttonState as an empty string
 
 @app.route('/')
 def index():
-    # return render_template('index.html')
-    # Generate URLs for multiple static images
-    image_urls = [
-        url_for('static', filename='images/fist.png'),
-        url_for('static', filename='images/pow.png'),
-        url_for('static', filename='images/hand.png')
-        url_for('static', filename='images/hand_pickup.png')
-    ]
-    return render_template('index.html', image_urls=image_urls)
+    return render_template('index.html')
+    
 
 # this is just for if the server?flask? receives a message from the html
 @socketio.event
@@ -51,7 +44,8 @@ ser = serial.Serial('/dev/ttyUSB0', 9600)  # Adjust the port and baud rate as ne
 try:
     while True:
         # Read a line from the serial port
-        serial_data = ser.readline().decode('utf-8').strip()
+        serial_data = ser.readline().decode('utf-8', errors='ignore').strip()
+        serial_data = serial_data.strip("b'").strip('\r\n')
 
         # Split the received data by commas
         data_list = serial_data.split(',')
